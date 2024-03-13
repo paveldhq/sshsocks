@@ -1,0 +1,15 @@
+version: "3"
+services:
+  proxy:
+    environment:
+      SSH_HOST: ${SSH_TUNNEL_TARGET_HOST}
+      SSH_PORT: ${SSH_TUNNEL_TARGET_PORT}
+      SSH_USER: ${SSH_TUNNEL_TARGET_USER}
+      SSH_PASS: ${SSH_TUNNEL_TARGET_PASS}
+    ports:
+      - ${SSH_TUNNEL_SOCKS_PORT}:8080
+    build:
+      context: .
+    image: para/sshproxy:0.0.1
+    container_name: proxy
+
